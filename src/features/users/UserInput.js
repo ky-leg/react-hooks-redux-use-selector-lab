@@ -7,13 +7,23 @@ function UserInput() {
   const [formData, setFormData] = useState({
     username: "",
     hometown: "",
+    asshole: "",
   });
 
   function handleInputChange(event) {
-    setFormData({
-      ...formData,
-      [event.target.id]: event.target.value,
-    });
+    console.log(event.target.checked)
+    if(event.target.type === "checkbox"){
+      setFormData({
+        ...formData,
+        [event.target.id]: event.target.checked,
+      })
+    }
+    else{
+      setFormData({
+        ...formData,
+        [event.target.id]: event.target.value,
+      })
+    };
   }
 
   function handleOnSubmit(event) {
@@ -37,6 +47,15 @@ function UserInput() {
           id="hometown"
           onChange={handleInputChange}
           placeholder="hometown"
+        />
+      </p>
+      <p>
+        asshole?
+        <input
+          type="checkbox"
+          id="asshole"
+          onChange={handleInputChange}
+          placeholder="asshole"
         />
       </p>
       <input type="submit" />
